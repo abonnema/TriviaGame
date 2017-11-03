@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+   <!-- Optional theme -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+
+   <div class="container">
+        <div class="jumbotron">
+            <h1>NEW YORK TIMES SEARCH</h1>
+        </div>
+    </div>
+
+   <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Search Parameters</h3>
+        </div>
+        <div class="panel-body">
+            <p> Search Term:</p>
+            <form action="">
+                <input id="searchText" type="text">
+                <p> Number of matches</p>
+                <select name="matches" id="match">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select><br><br>
+
+               <input type="text">
+                <p>start of year</p>
+                <input type="text">
+                <p>end of year</p>
+                <div class="btn-group" role="group" aria-label="...">
+                    <button id="search" type="button" class="btn btn-default">Search    </button>
+                    <button id="clear" type="button" class="btn btn-default">Clear Result</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+   <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Search Result</h3>
+        </div>
+        <div class="panel-body">
+            <div id="searchResult">result
+            </div>
+        </div>
+    </div>
+    <script>
+        $("#search").on("click", function() {
+
+           var url = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
+            url += '?' + $.param({
+                'api-key': "08d6f28cf4354027b92bc0f2bdec4146",
+                'q': "Trump" //$("searchText").val()
+            });
+            $.ajax({
+                url: url,
+                method: 'GET',
+            }).done(function(response) {
+                console.log(response);
+                // $("#searchResult").html(response);
+            });
+            //title
+            //author
+            //response.dox.biola
+            var url = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
+            $.ajax({
+            url: url,
+            method: 'GET',
+            }).done(function(result) {
+            console.log(result);
+            }).fail(function(err) {
+            throw err;
+            });
+        });
+    </script>
+
+
+
+
+   <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</body>
+
+</html>
